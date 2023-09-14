@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/usuario', function () {
+    return view('usuario.index');
+});
+
+Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender']);
+Route::resource('usuario', UsuarioController::class);
+
+
