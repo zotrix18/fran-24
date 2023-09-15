@@ -30,8 +30,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li>
-                            <a href="{{ url('usuario/') }}">Usuarios</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('usuario/') }}">Usuarios</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('usuario/') }}">Productos</a>
+                         </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('usuario/') }}">Categorias</a>
+                        </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ url('usuario/') }}">Proveedores</a>
                         </li>
                     </ul>
 
