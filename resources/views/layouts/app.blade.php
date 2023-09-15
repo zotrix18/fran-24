@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,7 +34,7 @@
                             <a class="nav-link" href="{{ url('usuario/') }}">Usuarios</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('usuario/') }}">Productos</a>
+                        <a class="nav-link" href="{{ url('producto/') }}">Productos</a>
                          </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('usuario/') }}">Categorias</a>

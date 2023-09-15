@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\VentasController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +22,18 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::get('/usuario', function () {
-//     return view('usuario.index');
-// });
+
 
 Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender'])->middleware('auth');
 Route::resource('usuario', UsuarioController::class)->middleware('auth');
+Route::resource('producto', ProductoController::class)->middleware('auth');
 
 
 
 Auth::routes();
 
-Route::get('/home', [UsuarioController::class, 'index'])->name('home');
+Route::get('/home', [UsuarioController::class, 'index'])->name('home')->middleware('auth');
 
 Route::prefix(['middleware' => 'auth'], function () {
-    
+    Route::get('/', [UsuarioController::class, 'index'])->name('home');
 });
