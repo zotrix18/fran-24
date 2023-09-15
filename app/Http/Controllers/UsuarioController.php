@@ -32,7 +32,22 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+            'apellido'=>'required|string|max:100',
+            'nombre'=> 'required|string|max:100',
+            'user'=> 'required|string|max:100',
+            
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+
         // $datosUsuario = request()->except('_token');
+        $correo = $request->input('correo');
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
         $usuario = $request->input('user');
@@ -78,6 +93,19 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         
+        $campos=[
+            'apellido'=>'required|string|max:100',
+            'nombre'=> 'required|string|max:100',
+            'user'=> 'required|string|max:100',
+            
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
         $nivel_acceso = $request->input('nivel_acceso');

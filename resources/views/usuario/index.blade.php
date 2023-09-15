@@ -1,10 +1,20 @@
-Mostrar la lista de usuarios
-@if(Session::has('mensaje'))
-{{ Session::get('mensaje')}}
+@extends('layouts.app')
 
+@section('content')
+
+@if(Session::has('mensaje'))
+    <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+        {{ Session::get('mensaje')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
 @endif
     
-<a href="{{ url('usuario/create') }}">Crear usuario nuevo</a>
+
+
+
+<div class="container">
+    
+<a class="btn btn-success" href="{{ url('usuario/create') }}">Crear usuario nuevo</a>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -29,15 +39,18 @@ Mostrar la lista de usuarios
                     @endif
             <td>{{ $usuario -> user}}</td>
             <td>   
-            <a href="{{url('/usuario/'. $usuario->id.'/edit')}}">Editar</a>
+            <a href="{{url('/usuario/'. $usuario->id.'/edit')}}" class="btn btn-warning">Editar</a>
              
-            <form action="{{ url('/usuario/suspender/' . $usuario->id) }}" method="POST">
+            <form action="{{ url('/usuario/suspender/' . $usuario->id) }}" class="d-inline" method="POST">
                 @csrf
                 @method('PATCH')
-                <input type="submit" value="Suspender">
+                <input type="submit" class="btn btn-danger" value="Suspender">
             </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+{!! $usuarios->links()!!}
+</div>
+@endsection

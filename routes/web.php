@@ -15,22 +15,22 @@ use App\Http\Controllers\UsuarioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/usuario', function () {
-    return view('usuario.index');
-});
+// Route::get('/usuario', function () {
+//     return view('usuario.index');
+// });
 
-Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender']);
-Route::resource('usuario', UsuarioController::class);
+Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender'])->middleware('auth');
+Route::resource('usuario', UsuarioController::class)->middleware('auth');
 
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [UsuarioController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix(['middleware' => 'auth'], function () {
+    
+});
