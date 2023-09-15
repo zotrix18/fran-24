@@ -11,7 +11,7 @@
 <label for="nombre">Nueva contraseña</label>
 <input type="text" name="pass" id="pass">
 <br>
-<input type="submit" value="Guardar">
+<input type="submit" value="{{$modo}}">
 <br>
 
 <a href="{{ url('usuario/') }}">Volver</a>

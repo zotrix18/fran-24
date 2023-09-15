@@ -52,7 +52,7 @@ class UsuarioController extends Controller
         // $datosUsuario
 
         Usuario::insert($datosUsuario);
-         return response()->json($datosUsuario);
+        return redirect('usuario')->with('mensaje', 'Usuario agregado con exito');
     }
 
     /**
@@ -112,7 +112,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $usuario->activo = !$usuario->activo;
         $usuario->save();
-        return redirect('/usuario');
+        return redirect('/usuario')->with('mensaje', 'Empleado suspendido');
     }
     
 

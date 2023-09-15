@@ -1,5 +1,8 @@
 Mostrar la lista de usuarios
+@if(Session::has('mensaje'))
+{{ Session::get('mensaje')}}
 
+@endif
     
 <a href="{{ url('usuario/create') }}">Crear usuario nuevo</a>
 <table class="table table-light">
