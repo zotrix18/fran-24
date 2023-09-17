@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('nombre');
             $table->integer('nivel_acceso');
-            $table->string('usuario');
+            $table->string('user');
             $table->string('pass');
             $table->integer('activo');
             $table->timestamps();
