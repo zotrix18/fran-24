@@ -37,3 +37,6 @@ Route::get('/home', [UsuarioController::class, 'index'])->name('home')->middlewa
 Route::prefix(['middleware' => 'auth'], function () {
     Route::get('/', [UsuarioController::class, 'index'])->name('home');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
