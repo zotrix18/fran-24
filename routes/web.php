@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductoController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('usuarios');
 });
 
 
