@@ -12,6 +12,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('build/assets/css/app-041e359a.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('build/assets/css/styles.css') }}">
+    <script src="{{ URL::asset('build/assets/js/app-70a4cfe7.js') }}"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

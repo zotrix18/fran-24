@@ -19,16 +19,12 @@ use App\Http\Controllers\ProductoController;
 */
 
 Route::get('/', function () {
-    return view('usuarios');
+    return view('auth.login');
 });
-
-
 
 Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender'])->middleware('auth');
 Route::resource('usuario', UsuarioController::class)->middleware('auth');
 Route::resource('producto', ProductoController::class)->middleware('auth');
-
-
 
 Auth::routes();
 
