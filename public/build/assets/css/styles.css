@@ -2,6 +2,7 @@
 
 .sinDesp{
  overflow: hidden;
+ background-color: rgb(211, 211, 211);
 }
 
 .gradiente-login{
@@ -10,15 +11,31 @@
 
 }
 
+.input-no-bg {
+    background-color: transparent;
+}
+
 .text-login{
     color: #C70039;
+    font-size: 40px;
+    font-weight: bolder;
+    
 }
 
 .linea{
-    
+    border: 2px;
+    border-bottom: 1px solid #557dff;
+
 }
 
 .centro{
     margin-top: 100px;
     max-height: 400px;
+}
+
+.text-fran{
+    font-family: 'Dancing Script', cursive;
+    color: #FFFF;
+    margin-top: 60%;
+    font-size: 40px;
 }

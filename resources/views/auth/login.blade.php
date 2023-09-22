@@ -65,7 +65,7 @@
                 class="w-50"
                 alt="logo">
             </div>
-            <div class="text-fran">
+            <div class="text-fran text-center">
                 <p>Fran 24 Hs</p>
             </div>
             
