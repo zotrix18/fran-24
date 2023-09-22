@@ -97,7 +97,7 @@ class UsuarioController extends Controller
         $campos=[
             'apellido'=>'required|string|max:100',
             'nombre'=> 'required|string|max:100',
-            'user'=> 'required|string|max:100',
+            'username'=> 'required|string|max:100',
             
         ];
         $mensaje=[
@@ -109,21 +109,28 @@ class UsuarioController extends Controller
 
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
+        $usuario = $request->input('username');
         
-        $usuario = $request->input('user');
         $pass = $request->input('pass');
         $hashedPass = Hash::make($pass);
 
-
-        $datosUsuario = [
-            
-            'apellido'=> $apellido,
-            'nombre'=> $nombre,
-            
-            'user'=> $usuario,
-            'pass'=> $hashedPass,
-            'activo'=>1
-        ];
+        if(empty($request->input('pass'))){
+            $datosUsuario = [
+                'apellido'=> $apellido,
+                'nombre'=> $nombre,
+                'username'=> $usuario,
+                'suspendido'=>0
+            ];
+        }else{
+            $datosUsuario = [
+                'apellido'=> $apellido,
+                'nombre'=> $nombre,
+                'username'=> $usuario,
+                'password'=> $hashedPass,
+                'suspendido'=>0
+            ];
+        }
+        
         User::where('id', '=', $id)->update($datosUsuario);
         $usuario = User::findOrFail($id);
         return view('usuario.edit', compact('usuario'));
