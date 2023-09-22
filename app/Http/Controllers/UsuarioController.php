@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 
 class UsuarioController extends Controller
 {
@@ -14,8 +15,9 @@ class UsuarioController extends Controller
     public function index()
     {
        
-        $datos['usuarios'] = Usuario::select('id','apellido', 'nombre', 'nivel_acceso', 'user')->paginate(5);
+        $datos['usuarios'] = User::select('id','apellido', 'nombre', 'username', 'suspendido')->paginate(5);
 
+        
         return view('usuario.index', $datos);
     }
 
@@ -36,7 +38,7 @@ class UsuarioController extends Controller
         $campos=[
             'apellido'=>'required|string|max:100',
             'nombre'=> 'required|string|max:100',
-            'user'=> 'required|string|max:100',
+            'username'=> 'required|string|unique:Users|max:100',
             
         ];
         $mensaje=[
@@ -47,26 +49,25 @@ class UsuarioController extends Controller
 
 
         // $datosUsuario = request()->except('_token');
-        $correo = $request->input('correo');
+        
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
-        $usuario = $request->input('user');
+        $usuario = $request->input('username');
         $pass = $request->input('pass');
         $hashedPass = Hash::make($pass);
 
 
         $datosUsuario = [
-            
             'apellido'=> $apellido,
             'nombre'=> $nombre,
-            'nivel_acceso' => 1,
-            'user'=> $usuario,
-            'pass'=> $hashedPass,
-            'activo'=>1
+            'username'=> $usuario,
+            'password'=> $hashedPass,
+            'suspendido'=>0
         ];
         // $datosUsuario
 
-        Usuario::insert($datosUsuario);
+        $user = User::create($datosUsuario);
+        $user->assignRole('Vendor');
         return redirect('usuario')->with('mensaje', 'Usuario agregado con exito');
     }
 
@@ -83,7 +84,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $usuario = Usuario::findOrFail($id);
+        $usuario = User::findOrFail($id);
         return view('usuario.edit', compact('usuario'));
     }
 
@@ -108,7 +109,7 @@ class UsuarioController extends Controller
 
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
-        $nivel_acceso = $request->input('nivel_acceso');
+        
         $usuario = $request->input('user');
         $pass = $request->input('pass');
         $hashedPass = Hash::make($pass);
@@ -123,8 +124,8 @@ class UsuarioController extends Controller
             'pass'=> $hashedPass,
             'activo'=>1
         ];
-        Usuario::where('id', '=', $id)->update($datosUsuario);
-        $usuario = Usuario::findOrFail($id);
+        User::where('id', '=', $id)->update($datosUsuario);
+        $usuario = User::findOrFail($id);
         return view('usuario.edit', compact('usuario'));
     }
 
@@ -137,8 +138,8 @@ class UsuarioController extends Controller
     }
 
     public function suspender(Request $request, $id){
-        $usuario = Usuario::findOrFail($id);
-        $usuario->activo = !$usuario->activo;
+        $usuario = User::findOrFail($id);
+        $usuario->suspendido = !$usuario->suspendido;
         $usuario->save();
         return redirect('/usuario')->with('mensaje', 'Empleado suspendido');
     }

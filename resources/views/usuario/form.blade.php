@@ -11,7 +11,7 @@
 
 <br>
 <div class="form-group">
-<label for="nombre">Apellido</label>
+<label for="apellido">Apellido</label>
 <input type="text" class="form-control" name="apellido" value="{{ isset ($usuario->apellido) ? $usuario->apellido : old('apellido')}}" id="apellido">
 </div>
 <br>
@@ -21,13 +21,13 @@
 </div>
 <br>
 <div class="form-group">
-<label for="nombre">Usuario</label>
-<input type="text" class="form-control" name="user" value="{{ isset ($usuario->user) ? $usuario->user : old('user')}}" id="user">
+<label for="username">Usuario</label>
+<input type="text" class="form-control" name="username" value="{{ isset ($usuario->username) ? $usuario->username : old('username')}}" id="username">
 </div>
 <br>
 <div class="form-group">
-<label for="nombre">Nueva contraseña</label>
-<input type="text" class="form-control" name="pass" id="pass">
+<label for="password">Nueva contraseña</label>
+<input type="text" class="form-control" name="password" id="password">
 </div>
 <br>
 <input type="submit" class="btn btn-success d-inline" value="{{$modo}}">

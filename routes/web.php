@@ -28,8 +28,8 @@ Route::resource('producto', ProductoController::class)->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [UsuarioController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin')->middleware('auth', 'can:dashAdmin');
 
 Route::prefix(['middleware' => 'auth'], function () {
-    Route::get('/', [UsuarioController::class, 'index'])->name('home');
+    Route::get('/', [UsuarioController::class, 'index'])->name('dashAdmin');
 });

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('nombre');
             $table->string('username')->unique();
-            
             $table->string('password');
+            $table->integer('suspendido');
             $table->rememberToken();
             $table->timestamps();
         });
