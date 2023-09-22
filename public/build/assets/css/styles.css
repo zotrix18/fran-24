@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&family=Roboto:wght@400;500&display=swap');
+
+.sinDesp{
+ overflow: hidden;
+}
+
+.gradiente-login{
+    background: linear-gradient(to bottom, #C70039 50%, #000000 100%);
+    min-height: 100vh;
+
+}
+
+.text-login{
+    color: #C70039;
+}
+
+.linea{
+    
+}
+
+.centro{
+    margin-top: 100px;
+    max-height: 400px;
+}
