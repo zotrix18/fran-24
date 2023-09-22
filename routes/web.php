@@ -28,7 +28,8 @@ Route::resource('producto', ProductoController::class)->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin')->middleware('auth', 'can:dashAdmin');
+//Si detecta que no posee el permiso vuelve al login con un mensaje
+Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin')->middleware('auth', 'checkPermission:dashAdmin');
 
 Route::prefix(['middleware' => 'auth'], function () {
     Route::get('/', [UsuarioController::class, 'index'])->name('dashAdmin');

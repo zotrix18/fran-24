@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('build/assets/css/app-041e359a.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('build/assets/css/styles.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
    
 
    
@@ -22,7 +22,40 @@
 
 </head>
 <body class="sinDesp">
-    
+<button type="button" class="btn btn-primary" style="display:none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+</button>
+<!-- Button trigger modal -->
+@if ($errors->any())
+    <script>
+        
+        window.onload = function() {
+            var button = document.querySelector('.btn-primary');
+            button.click();
+        }
+    </script>
+@endif
+
+
+<!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="staticBackdropLabel">Acceso Restringido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entiendo</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
  <div class="conteiner-fluid">
 
     <div class="row">
@@ -55,7 +88,8 @@
                                 <div class="linea"></div>
                                 @error('username')
                                     <span class="invalid-feedback text-center" role="alert">
-                                        <strong>{{ __('Usuario o Contraseña incorrectos') }}</strong>
+                                        <!-- <strong>{{ __('Usuario o Contraseña incorrectos') }}</strong> -->
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             

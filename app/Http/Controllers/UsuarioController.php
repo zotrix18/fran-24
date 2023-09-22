@@ -64,7 +64,7 @@ class UsuarioController extends Controller
             'password'=> $hashedPass,
             'suspendido'=>0
         ];
-        // $datosUsuario
+        
 
         $user = User::create($datosUsuario);
         $user->assignRole('Vendor');

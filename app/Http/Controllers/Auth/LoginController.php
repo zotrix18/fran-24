@@ -44,11 +44,11 @@ class LoginController extends Controller
         return 'username';
     }
 
-//     protected function sendFailedLoginResponse(Request $request)
-// {
-//     throw ValidationException::withMessages([
-//            'username or password is incorrect!!!'
-//         ]);
-// }
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return redirect('/'); // redirect somewhere else that a guest can visit
+    }
     
 }
