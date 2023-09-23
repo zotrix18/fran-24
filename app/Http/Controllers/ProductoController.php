@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proveedores;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view('producto.index');
+        $datos['productos'] = Producto::select('id_producto','nombre', 'stock', 'precio', 'alerta', 'id_proveedor')->paginate(5);
+        return view('producto.index', $datos);
     }
 
     /**
@@ -20,7 +22,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $datos['proveedores'] = Proveedores::select('id_proveedor, nombre');
+        return view('producto.create', $datos);
     }
 
     /**
@@ -28,7 +31,40 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $campos=[
+            'nombre'=>'required|string|max:100',
+            'stock'=> 'required|integer|max:1000',
+            'precio'=> 'required|float|max:1000000'
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+
+        // $datosUsuario = request()->except('_token');
+        
+        $apellido = $request->input('nombro');
+        $nombre = $request->input('stock');
+        $usuario = $request->input('precio');
+        $prov = $request->input('id_proveedor');
+        
+
+
+        $datosUsuario = [
+            'nombre'=> $apellido,
+            'stock'=> $nombre,
+            'precio'=> $usuario,
+            'alerta'=> 0,
+            'id_proveedor'=> $prov
+        ];
+        
+
+        Producto::create($datosUsuario);
+        return redirect('producto')->with('mensaje', 'Usuario agregado con exito');
+
     }
 
     /**

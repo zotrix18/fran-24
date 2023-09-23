@@ -38,7 +38,7 @@ return new class extends Migration
             $table->integer('pagado');
             $table->date('fecha');
             $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_user')->references('id')->on('users'); // Asegúrate de que la tabla 'usuarios' exista
+            $table->foreign('id_usuario')->references('id')->on('users'); // Asegúrate de que la tabla 'users' exista
             $table->timestamps();
         });
 
@@ -63,11 +63,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_producto');
             $table->foreign('id_producto')->references('id_producto')->on('productos');
         });
-
-
-
-
-
 
     }
 

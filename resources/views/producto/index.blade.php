@@ -22,25 +22,22 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Nombre </th>
-            <th>Tipo de usuario</th>
-            <th>Usuario</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Proveedor</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($productos as $usuario)
-            @if($producto -> suspendido == 0)
+        @foreach($productos as $producto)
+            
             <tr>
-                <td>{{ $usuario->id}}</td>
-                <td>{{ $usuario -> apellido}}</td>
-                <td>{{ $usuario -> nombre}}</td>
-                @if($usuario->hasRole('Admin'))
-                    <td>Admin</td>
-                @else
-                    <td>Vendedor</td>
-                @endif             
-                <td>{{ $usuario -> username}}</td>
+                <td>{{ $producto->id_producto}}</td>
+                <td>{{ $producto -> nombre}}</td>
+                <td>{{ $producto -> stock}}</td>
+                            
+                <td>{{ $producto -> precio}}</td>
+                <td>{{ $producto -> id_proveedor}}</td>
                 <td>   
                 <a href="{{url('/producto/'. $producto->id.'/edit')}}" class="btn btn-warning">Editar</a>
                 
@@ -51,7 +48,6 @@
                 </form>
                 </td>
             </tr>
-            @endif
         @endforeach
     </tbody>
 </table>
