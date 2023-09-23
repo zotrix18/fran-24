@@ -22,15 +22,17 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender'])->middleware('auth');
-Route::resource('usuario', UsuarioController::class)->middleware('auth');
-Route::resource('producto', ProductoController::class)->middleware('auth');
-
 Auth::routes();
 
-//Si detecta que no posee el permiso vuelve al login con un mensaje
-Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin')->middleware('auth', 'checkPermission:dashAdmin');
-
-Route::prefix(['middleware' => 'auth'], function () {
-    Route::get('/', [UsuarioController::class, 'index'])->name('dashAdmin');
+Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function () {
+    Route::resource('usuario', UsuarioController::class);
+    Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender']);
+    Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin');
+    Route::resource('producto', ProductoController::class);
 });
+
+Route::middleware('auth')->group(function () {
+    // Route::get('/', [UsuarioController::class, 'index'])->name('dashAdmin');
+    Route::get('/venta', [VentaController::class, 'index'])->name('vendedor');
+});
+

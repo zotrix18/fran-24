@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -51,4 +52,13 @@ class LoginController extends Controller
         return redirect('/'); // redirect somewhere else that a guest can visit
     }
     
+    protected function authenticated(Request $request, $user)
+    {
+        //Deriva segun el tipo de permiso
+        if($user->can('dashAdmin')) {
+            return redirect('/home');
+        } else {
+            return redirect('/venta');
+        }
+    }
 }

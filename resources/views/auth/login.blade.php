@@ -55,7 +55,7 @@
  <div class="conteiner-fluid">
 
     <div class="row">
-        <div class="col-lg-3 gradiente-login">
+        <div class="col-lg-3 col-3 gradiente-login">
             <div class="text-center my-5">
                 <img src="{{ URL::asset('build/assets/img/logo.png')}}" 
                 class="w-50"
@@ -67,15 +67,12 @@
             
         </div>
 
-        <div class="col-lg-3"></div>
+        <!-- <div class="col-lg-3 col-1"></div> -->
 
-        <div class="col-lg-3 centro shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="col-lg-3 col-9 centro shadow-lg p-3 mb-5 bg-white rounded">
             <p class="text-login text-center">Login</p>
                 <div class="mt-3 p-5">
-
-                
-
-                
+           
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row mb-3">
@@ -117,7 +114,7 @@
             
         </div>
 
-        <div class="col-lg-3"></div>
+        <!-- <div class="col-lg-3 col-1"></div> -->
 
     </div>
 

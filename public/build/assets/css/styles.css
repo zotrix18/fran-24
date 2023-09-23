@@ -29,13 +29,13 @@
 }
 
 .centro{
-    margin-top: 100px;
+    margin: 25vh 0 0 20vw;
     max-height: 400px;
 }
 
 .text-fran{
     font-family: 'Dancing Script', cursive;
     color: #FFFF;
-    margin-top: 60%;
+    margin-top: 50vh;
     font-size: 40px;
 }
