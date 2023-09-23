@@ -39,12 +39,12 @@
                 <td>{{ $producto -> precio}}</td>
                 <td>{{ $producto -> id_proveedor}}</td>
                 <td>   
-                <a href="{{url('/producto/'. $producto->id.'/edit')}}" class="btn btn-warning">Editar</a>
+                <a href="{{url('/producto/'. $producto->id_producto.'/edit')}}" class="btn btn-warning">Editar</a>
                 
-                <form action="{{ url('/producto/suspender/' . $producto->id) }}" class="d-inline" method="POST">
+                <form action="{{ url('/producto/baja/' . $producto->id_producto) }}" class="d-inline" method="POST">
                     @csrf
                     @method('PATCH')
-                    <input type="submit" class="btn btn-danger" value="Suspender">
+                    <input type="submit" class="btn btn-danger" value="Baja">
                 </form>
                 </td>
             </tr>

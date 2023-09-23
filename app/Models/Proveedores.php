@@ -9,4 +9,3 @@ class Proveedores extends Model
 {
     use HasFactory;
 }
- 

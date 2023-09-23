@@ -25,16 +25,15 @@
 </div>
 <br>
 
-@foreach ($proveedores as $proveedor)
-    {{var_dump($proveedor)}}sdsd
-    <!-- <option value="{{$proveedor->id_proveedor}}">{{$proveedor->nombre}}</option> -->
-  @endforeach
 
-<select class="form-select" aria-label="Default select example">
-  <option selected>Seleccione proveedor</option>
-  
-  
+
+<select class="form-select"  name="proveedor_id">
+    <option value="" selected>Seleccione proveedor</option>
+    @foreach ($proveedores as $proveedor)
+        <option value="{{$proveedor->id_proveedor}}">{{$proveedor->nombre}}</option>
+    @endforeach
 </select>
+
 <br>
 
 <input type="submit" class="btn btn-success d-inline" value="{{$modo}}">

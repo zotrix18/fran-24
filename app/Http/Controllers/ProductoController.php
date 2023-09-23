@@ -22,7 +22,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $datos['proveedores'] = Proveedores::select('id_proveedor, nombre');
+        $datos['proveedores'] = Proveedores::select('id_proveedor', 'nombre')->get();
         return view('producto.create', $datos);
     }
 
@@ -34,8 +34,11 @@ class ProductoController extends Controller
         
         $campos=[
             'nombre'=>'required|string|max:100',
-            'stock'=> 'required|integer|max:1000',
-            'precio'=> 'required|float|max:1000000'
+            'stock' => 'required|numeric|max:1000',
+            'precio' => 'required|numeric|max:1000000',
+            'proveedor_id' => 'required|numeric', // Asegura que 'proveedor_id' esté presente y sea numérico
+
+
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido'
@@ -46,23 +49,25 @@ class ProductoController extends Controller
 
         // $datosUsuario = request()->except('_token');
         
-        $apellido = $request->input('nombro');
-        $nombre = $request->input('stock');
-        $usuario = $request->input('precio');
-        $prov = $request->input('id_proveedor');
+        $nombre = $request->input('nombre');
+        $stock = $request->input('stock');
+        $precio = $request->input('precio');
+        $prov = $request->input('proveedor_id');
         
 
 
         $datosUsuario = [
-            'nombre'=> $apellido,
-            'stock'=> $nombre,
-            'precio'=> $usuario,
+            'nombre'=> $nombre,
+            'stock'=> $stock,
+            'precio'=> $precio,
             'alerta'=> 0,
-            'id_proveedor'=> $prov
+            'id_proveedor'=> $prov,
+            'created_at' => now(),
+            'updated_at' => now()
         ];
         
 
-        Producto::create($datosUsuario);
+        Producto::insert($datosUsuario);
         return redirect('producto')->with('mensaje', 'Usuario agregado con exito');
 
     }
@@ -78,9 +83,10 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Producto $producto)
+    public function edit($id_producto)
     {
-        //
+        $producto = Producto::findOrFail($id_producto);
+        return view('producto.edit', compact('producto'));
     }
 
     /**
