@@ -56,7 +56,7 @@ class ProductoController extends Controller
         
 
 
-        $datosUsuario = [
+        $datosProducto = [
             'nombre'=> $nombre,
             'stock'=> $stock,
             'precio'=> $precio,
@@ -67,7 +67,7 @@ class ProductoController extends Controller
         ];
         
 
-        Producto::insert($datosUsuario);
+        Producto::insert($datosProducto);
         return redirect('producto')->with('mensaje', 'Usuario agregado con exito');
 
     }
@@ -85,16 +85,54 @@ class ProductoController extends Controller
      */
     public function edit($id_producto)
     {
-        $producto = Producto::findOrFail($id_producto);
-        return view('producto.edit', compact('producto'));
+        
+        $producto = Producto::where('id_producto', $id_producto)->first();
+        $datos ['proveedor']= Proveedores::where('id_proveedor', $producto->id_proveedor)->first();
+        return view('producto.edit', compact('producto'), $datos);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $campos=[
+            'nombre'=>'required|string|max:100',
+            'stock' => 'required|numeric|max:1000',
+            'precio' => 'required|numeric|max:1000000',
+        
+
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+
+        
+        
+        $nombre = $request->input('nombre');
+        $stock = $request->input('stock');
+        $precio = $request->input('precio');
+        $prov = $request->input('proveedor_id');
+        
+
+
+        $datosProducto = [
+            'nombre'=> $nombre,
+            'stock'=> $stock,
+            'precio'=> $precio,
+            'alerta'=> 0,
+            'id_proveedor'=> $prov,
+            'updated_at' => now()
+        ];
+        
+
+        Producto::where('id_producto', '=', $id)->update($datosProducto);
+        $producto = Producto::where('id_producto', $id)->first();
+        return view('producto.edit', compact('producto'));
     }
 
     /**
