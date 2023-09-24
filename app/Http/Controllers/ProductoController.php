@@ -85,10 +85,15 @@ class ProductoController extends Controller
      */
     public function edit($id_producto)
     {
-        
         $producto = Producto::where('id_producto', $id_producto)->first();
-        $datos ['proveedor']= Proveedores::where('id_proveedor', $producto->id_proveedor)->first();
-        return view('producto.edit', compact('producto'), $datos);
+
+        $datos = [
+            'producto'=>$producto,
+            'proveedor'=>Proveedores::findOrFail($producto->id_proveedor)
+        ];
+        
+        // dd($datos);
+        return view('producto.edit', $datos);
     }
 
     /**

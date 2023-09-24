@@ -30,7 +30,7 @@
 <select class="form-select" name="proveedor_id">
     @if(isset ($producto->precio))
         <option value="">Seleccione Proveedor</option>
-        <option value="{{$producto->id_proveedor}}" selected>{{$proveedor->nombre}}</option>   
+        <option value="{{$proveedor->id_proveedor}}" selected>{{$proveedor->nombre}}</option>  
     @else
         <option value="" selected>Seleccione Proveedor</option>
         @foreach($proveedores as $proveedor)
