@@ -86,14 +86,9 @@ class ProductoController extends Controller
     public function edit($id_producto)
     {
         $producto = Producto::where('id_producto', $id_producto)->first();
-
-        $datos = [
-            'producto'=>$producto,
-            'proveedor'=>Proveedores::findOrFail($producto->id_proveedor)
-        ];
-        
-        // dd($datos);
-        return view('producto.edit', $datos);
+        $id = $producto->id_proveedor;
+        $proveedor = Proveedores::findOrFail($id);
+        return view('producto.edit', compact('proveedor' ,'producto'));
     }
 
     /**
@@ -105,6 +100,7 @@ class ProductoController extends Controller
             'nombre'=>'required|string|max:100',
             'stock' => 'required|numeric|max:1000',
             'precio' => 'required|numeric|max:1000000',
+            
         
 
 
@@ -120,9 +116,9 @@ class ProductoController extends Controller
         
         $nombre = $request->input('nombre');
         $stock = $request->input('stock');
-        $precio = $request->input('precio');
+        $precio = $request->input('precio'); 
         $prov = $request->input('proveedor_id');
-        
+        dd($prov);
 
 
         $datosProducto = [

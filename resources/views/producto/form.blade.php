@@ -8,6 +8,8 @@
 </div>
 @endif
 
+
+
 <br>
 <div class="form-group">
 <label for="nombre">Nombre</label>
@@ -29,10 +31,10 @@
 
 <select class="form-select" name="proveedor_id">
     @if(isset ($producto->precio))
-        <option value="">Seleccione Proveedor</option>
-        <option value="{{$proveedor->id_proveedor}}" selected>{{$proveedor->nombre}}</option>  
+        <option value=" ">Seleccione Proveedor</option>
+        <option value=" {{ $proveedor -> id }} " selected> {{ $proveedor -> nombre }} </option>  
     @else
-        <option value="" selected>Seleccione Proveedor</option>
+        <option value=" " selected>Seleccione Proveedor</option>
         @foreach($proveedores as $proveedor)
             <option value="{{$proveedor->id_proveedor}}">{{$proveedor->nombre}}</option>
         @endforeach
