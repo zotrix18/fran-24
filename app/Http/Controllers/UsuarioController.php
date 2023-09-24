@@ -14,11 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-       
         $datos['usuarios'] = User::select('id','apellido', 'nombre', 'username', 'suspendido')->paginate(5);
-
-        
-        return view('usuario.index', $datos);
+       return view('usuario.index', $datos);
     }
 
     /**
@@ -53,8 +50,7 @@ class UsuarioController extends Controller
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
         $usuario = $request->input('username');
-        $pass = $request->input('pass');
-        $hashedPass = Hash::make($pass);
+        $hashedPass = Hash::make($request->input('password'));
 
 
         $datosUsuario = [
@@ -109,18 +105,20 @@ class UsuarioController extends Controller
 
         $apellido = $request->input('apellido');
         $nombre = $request->input('nombre');
-        $usuario = $request->input('username');
+        $usuario = $request->input('username');        
+        $pass = $request->input('password');
+        $hashedPass = Hash::Make($pass);
         
-        $pass = $request->input('pass');
-        $hashedPass = Hash::make($pass);
 
-        if(empty($request->input('pass'))){
+
+        if($request->input('password') == NULL){
             $datosUsuario = [
                 'apellido'=> $apellido,
                 'nombre'=> $nombre,
                 'username'=> $usuario,
                 'suspendido'=>0
             ];
+
         }else{
             $datosUsuario = [
                 'apellido'=> $apellido,

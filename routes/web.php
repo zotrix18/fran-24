@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function (
     Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender']);
     Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin');
     Route::resource('producto', ProductoController::class);
+    Route::patch('/producto/baja/{id}', [ProductoController::class, 'baja']);
 });
 
 Route::middleware('auth')->group(function () {

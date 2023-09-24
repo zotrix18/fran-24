@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id('id_categoria');
             $table->string('nombre');
+            $table->unsignedBigInteger('user_cambio');
+            $table->foreign('user_cambio')->references('id')->on('users');
+            $table->integer('baja');
             $table->timestamps();
         });
 
@@ -25,6 +28,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->unsignedBigInteger('id_categoria');
             $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+            $table->unsignedBigInteger('user_cambio');
+            $table->foreign('user_cambio')->references('id')->on('users');
+            $table->integer('baja');
             $table->timestamps();
         });
 
@@ -36,7 +42,7 @@ return new class extends Migration
             $table->integer('pagado');
             $table->date('fecha');
             $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('users'); // Asegúrate de que la tabla 'users' exista
+            $table->foreign('id_usuario')->references('id')->on('users'); 
             $table->timestamps();
         });
 
@@ -49,6 +55,9 @@ return new class extends Migration
             $table->integer('alerta');
             $table->unsignedBigInteger('id_proveedor');
             $table->foreign('id_proveedor')->references('id_proveedor')->on('proveedores');
+            $table->unsignedBigInteger('user_cambio');
+            $table->foreign('user_cambio')->references('id')->on('users');
+            $table->integer('baja');
             $table->timestamps();
         });
 
@@ -60,6 +69,8 @@ return new class extends Migration
             $table->foreign('id_venta')->references('id_venta')->on('ventas');
             $table->unsignedBigInteger('id_producto');
             $table->foreign('id_producto')->references('id_producto')->on('productos');
+            $table->unsignedBigInteger('user_cambio');
+            $table->foreign('user_cambio')->references('id')->on('users');
         });
 
     }

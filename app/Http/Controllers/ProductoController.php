@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Proveedores;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ProductoController extends Controller
 {
@@ -53,6 +55,7 @@ class ProductoController extends Controller
         $stock = $request->input('stock');
         $precio = $request->input('precio');
         $prov = $request->input('proveedor_id');
+        $id = auth()->id();
         
 
 
@@ -62,13 +65,15 @@ class ProductoController extends Controller
             'precio'=> $precio,
             'alerta'=> 0,
             'id_proveedor'=> $prov,
+            'user_cambio' => $id,
+            'baja' => 0,
             'created_at' => now(),
             'updated_at' => now()
         ];
         
 
         Producto::insert($datosProducto);
-        return redirect('producto')->with('mensaje', 'Usuario agregado con exito');
+        return redirect('producto')->with('mensaje', 'Producto agregado con exito');
 
     }
 
@@ -88,7 +93,8 @@ class ProductoController extends Controller
         $producto = Producto::where('id_producto', $id_producto)->first();
         $id = $producto->id_proveedor;
         $proveedor = Proveedores::findOrFail($id);
-        return view('producto.edit', compact('proveedor' ,'producto'));
+        
+        return view('producto.edit', compact('producto', 'proveedor'));
     }
 
     /**
@@ -100,9 +106,6 @@ class ProductoController extends Controller
             'nombre'=>'required|string|max:100',
             'stock' => 'required|numeric|max:1000',
             'precio' => 'required|numeric|max:1000000',
-            
-        
-
 
         ];
         $mensaje=[
@@ -110,30 +113,25 @@ class ProductoController extends Controller
         ];
 
         $this->validate($request, $campos, $mensaje);
-
-
-        
-        
+       
         $nombre = $request->input('nombre');
         $stock = $request->input('stock');
         $precio = $request->input('precio'); 
         $prov = $request->input('proveedor_id');
-        dd($prov);
-
+        $id_cambio = auth()->id();
 
         $datosProducto = [
             'nombre'=> $nombre,
             'stock'=> $stock,
             'precio'=> $precio,
-            'alerta'=> 0,
             'id_proveedor'=> $prov,
+            'user_cambio' => $id_cambio,
             'updated_at' => now()
         ];
         
 
         Producto::where('id_producto', '=', $id)->update($datosProducto);
-        $producto = Producto::where('id_producto', $id)->first();
-        return view('producto.edit', compact('producto'));
+        return redirect ('producto')->with('mensaje', 'Cambio realizado');
     }
 
     /**
@@ -142,5 +140,12 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //
+    }
+
+    public function baja(Request $request, $id){
+        $producto = Producto::findOrFail($id);
+        $producto->baja = !$producto->baja;
+        $producto->save();
+        return redirect('/producto')->with('mensaje', 'Producto dado de Baja');
     }
 }

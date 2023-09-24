@@ -9,11 +9,5 @@ class Producto extends Model
 {
     use HasFactory;
 
-    // protected $fillable = [
-    //     'apellido',
-    //     'nombre',
-    //     'username',
-    //     'password',
-    //     'suspendido'
-    // ];
+    protected $primaryKey = 'id_producto';
 }
