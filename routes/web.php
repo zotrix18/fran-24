@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function (
     Route::get('/home', [UsuarioController::class, 'index'])->name('dashAdmin');
     Route::resource('producto', ProductoController::class);
     Route::patch('/producto/baja/{id}', [ProductoController::class, 'baja']);
+    Route::resource('categoria', CategoriaController::class);
+    Route::patch('/categoria/baja/{id}', [CategoriaController::class, 'baja']);
 });
 
 Route::middleware('auth')->group(function () {
