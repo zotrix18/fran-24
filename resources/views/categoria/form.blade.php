@@ -11,7 +11,7 @@
 <br>
 <div class="form-group">
 <label for="nombre">Nombre</label>
-<input type="text" class="form-control" name="nombre" value="{{ isset ($producto->nombre) ? $producto->nombre : old('nombre')}}" id="nombre">
+<input type="text" class="form-control" name="nombre" value="{{ isset ($categoria->nombre) ? $categoria->nombre : old('nombre')}}" id="nombre">
 </div>
 <br>
 

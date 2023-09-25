@@ -71,15 +71,37 @@ class CategoriaController extends Controller
      */
     public function edit(categoria $categoria)
     {
-        
+        //Reemplazado por modal
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, $id_cat)
     {
-        //
+        $campos=[
+            'nombre'=> 'required|string|max:100',  
+        ];
+
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $nombre = $request->input('nombre');
+        $id = auth()->id();
+
+        $datosCategoria = [
+            'nombre'=> $nombre,
+            'user_cambio' => $id,
+            'updated_at' => now()
+
+        ];
+
+        Categorias::where('id_categoria', '=', $id_cat)->update($datosCategoria);
+        return redirect ('categoria')->with('mensaje', 'Cambio realizado');
+
     }
 
     /**
@@ -88,5 +110,12 @@ class CategoriaController extends Controller
     public function destroy(categoria $categoria)
     {
         //
+    }
+
+    public function baja(Request $request, $id){
+        $categoria = Categorias::findOrFail($id);
+        $categoria->baja = !$categoria->baja;
+        $categoria->save();
+        return redirect('/categoria')->with('mensaje', 'Categoria dada de Baja');
     }
 }

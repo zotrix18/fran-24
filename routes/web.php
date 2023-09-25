@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Rutas ADMIN, acceso restringido a dasg
 Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function () {
     Route::resource('usuario', UsuarioController::class);
     Route::patch('/usuario/suspender/{id}', [UsuarioController::class, 'suspender']);
@@ -32,6 +33,8 @@ Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function (
     Route::patch('/producto/baja/{id}', [ProductoController::class, 'baja']);
     Route::resource('categoria', CategoriaController::class);
     Route::patch('/categoria/baja/{id}', [CategoriaController::class, 'baja']);
+    Route::resource('proveedor', ProveedorController::class);
+    Route::patch('/proveedor/baja/{id}', [ProveedorController::class, 'baja']);
 });
 
 Route::middleware('auth')->group(function () {
