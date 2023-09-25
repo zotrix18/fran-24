@@ -58,7 +58,7 @@ class LoginController extends Controller
         if($user->can('dashAdmin')) {
             return redirect('/home');
         } else {
-            return redirect('/venta');
+            return redirect('/ventas');
         }
     }
 }

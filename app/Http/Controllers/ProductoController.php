@@ -15,6 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        $datos['proveedores'] = Proveedores::select('id_proveedor','nombre')->get();
         $datos['productos'] = Producto::select('id_producto','nombre', 'stock', 'precio', 'alerta', 'id_proveedor')->paginate(5);
         return view('producto.index', $datos);
     }

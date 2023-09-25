@@ -37,6 +37,12 @@ Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function (
     Route::patch('/proveedor/baja/{id}', [ProveedorController::class, 'baja']);
 });
 
+Route::group(['middleware' => ['auth', 'checkPermission:vendedor']], function () {
+    Route::get('/ventas', [VentasController::class, 'index']);
+
+
+});
+
 Route::middleware('auth')->group(function () {
     // Route::get('/', [UsuarioController::class, 'index'])->name('dashAdmin');
     Route::get('/venta', [VentaController::class, 'index'])->name('vendedor');

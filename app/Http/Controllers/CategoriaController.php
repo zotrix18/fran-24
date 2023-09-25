@@ -13,7 +13,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $datos['usuarios'] = User::select('apellido','nombre','username')->paginate(5);
+        $datos['usuarios'] = User::select( 'id','apellido','nombre','username')->paginate(5);
         $datos['categorias'] = Categorias::select('id_categoria','nombre', 'user_cambio', 'baja')->paginate(5);
         return view('categoria.index', $datos);
     }

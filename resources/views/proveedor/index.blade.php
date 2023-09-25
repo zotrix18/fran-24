@@ -17,31 +17,41 @@
 <div class="container">
     
     <button type="button" class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#modal-alta">
-        Alta Categoria
+        Alta Proveedor
     </button>
 
-     @include('categoria.create',['modo'=>'Alta Categoria'])
+     @include('proveedor.create',['modo'=>'Alta Proveedor'])
     
     <table class="table table-light text-center table-striped table-bordered">
         <thead class="thead-light">
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
+                <th>Categoria</th>
                 <th>Ultimo cambio por</th>
-                <th>Acciones</th>
+                <th>Acciones</th> 
             </tr>
         </thead>
         <tbody>
-            @foreach($categorias as $categoria)
+            @foreach($proveedores as $proveedor)
                 
                 <tr>
-                    <td>{{ $categoria->id_categoria}}</td>
-                    <td>{{ $categoria -> nombre}}</td>
-                    @foreach ( $usuarios as $usuario)
-                        @if($categoria -> user_cambio == $usuario->id)
-                        <td>{{$usuario->username}} - {{ $usuario->apellido}}, {{$usuario->nombre}} </td>
+                    <td>{{ $proveedor -> id_proveedor}}</td>
+                    <td>{{ $proveedor -> nombre}}</td>
+
+                    @foreach ($categorias as $categoria)
+                        @if($proveedor -> id_categoria == $categoria -> id_categoria)
+                            <td> {{ $categoria -> nombre}} </td>
                         @endif
                     @endforeach
+
+                    @foreach ( $usuarios as $usuario)
+                        @if( $usuario->id == $proveedor->user_cambio)
+                            <td> {{$usuario->username}} - {{ $usuario->apellido}}, {{$usuario->nombre}} </td>
+                        @endif
+                    @endforeach
+
+
                     <td>   
                                
                     
@@ -49,9 +59,9 @@
                         Editar Nombre
                     </button>
 
-                    @include('categoria.edit',['modo'=>'Edicion Categoria', $categoria])
+                    @include('proveedor.edit',['modo'=>'Edicion proveedor', $proveedor])
 
-                    <form action="{{ url('/categoria/baja/' . $categoria->id_categoria) }}" class="d-inline" method="POST">
+                    <form action="{{ url('/proveedor/baja/' . $proveedor->id_categoria) }}" class="d-inline" method="POST">
                         @csrf
                         @method('PATCH')
                         <input type="submit" class="btn btn-danger d-inline" value="Baja">
@@ -62,6 +72,6 @@
             @endforeach
         </tbody>
     </table>
-    {!! $categorias->links()!!}
+    
 </div>
 @endsection

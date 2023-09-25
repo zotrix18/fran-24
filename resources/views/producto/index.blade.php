@@ -37,7 +37,13 @@
                 <td>{{ $producto -> stock}}</td>
                             
                 <td>{{ $producto -> precio}}</td>
-                <td>{{ $producto -> id_proveedor}}</td>
+
+                @foreach ($proveedores as $proveedor)
+                    @if($proveedor -> id_proveedor == $producto -> id_proveedor)
+                        <td> {{ $proveedor -> nombre}} </td>
+                    @endif
+                @endforeach
+
                 <td>   
                 <a href="{{url('/producto/'. $producto->id_producto.'/edit')}}" class="btn btn-warning">Editar</a>
                 
