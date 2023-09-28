@@ -32,7 +32,13 @@
 <select class="form-select" name="proveedor_id">
     @if(isset ($producto->precio))
         <option value=" ">Seleccione Proveedor</option>
-        <option value=" {{ $proveedor -> id_proveedor }} " selected> {{ $proveedor -> nombre }} </option>  
+        <option vale=" {{ $proveedor -> id_proveedor }} " selected> {{ $proveedor -> nombre }} </option>  
+        @foreach($proveedores as $proveedorr)
+            @if($proveedor -> id_proveedor != $proveedorr -> id_proveedor)
+                <option value="{{$proveedorr->id_categoria}}">{{$proveedorr->nombre}}</option>
+                
+            @endif
+        @endforeach
     @else
         <option value=" " selected>Seleccione Proveedor</option>
         @foreach($proveedores as $proveedor)

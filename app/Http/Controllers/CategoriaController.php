@@ -41,7 +41,7 @@ class CategoriaController extends Controller
 
         $this->validate($request, $campos, $mensaje);
 
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $id = auth()->id();
         
         $datosCategoria = [
@@ -89,7 +89,7 @@ class CategoriaController extends Controller
 
         $this->validate($request, $campos, $mensaje);
 
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $id = auth()->id();
 
         $datosCategoria = [

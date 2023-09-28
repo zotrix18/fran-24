@@ -18,6 +18,11 @@
     @if(isset ($categoria->nombre))
         <option value=" ">Seleccione Proveedor</option>
         <option value=" {{ $categoria -> id_categoria }} " selected> {{ $categoria -> nombre }} </option>  
+        @foreach($categorias as $categoriaa)
+            @if($categoria->id_categoria != $categoriaa->id_categoria)
+                <option value="{{$categoriaa->id_categoria}}">{{$categoriaa->nombre}}</option>
+            @endif
+        @endforeach
     @else
         <option value=" " selected>Seleccione Proveedor</option>
         @foreach($categorias as $categoria)

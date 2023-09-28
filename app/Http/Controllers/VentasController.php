@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
 use App\Models\rv;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,8 @@ class VentasController extends Controller
      */
     public function index()
     {
-    
-        return view('venta.index');
+        $horaActual = now();
+        return view('venta.index')->with('horaActual', $horaActual);
     
     }
 

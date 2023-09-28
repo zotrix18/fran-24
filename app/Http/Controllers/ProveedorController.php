@@ -16,7 +16,7 @@ class ProveedorController extends Controller
     {
         $datos['categorias'] = Categorias::select('id_categoria', 'nombre')->get();
         $datos['usuarios'] = User::select('id','apellido','nombre','username')->get();
-        $datos['proveedores'] = Proveedores::select('id_proveedor','nombre')->get();
+        $datos['proveedores'] = Proveedores::select('id_proveedor','nombre', 'id_categoria', 'user_cambio')->get();
         return view('proveedor.index', $datos);
     }
 
@@ -43,7 +43,7 @@ class ProveedorController extends Controller
 
         $this->validate($request, $campos, $mensaje);
 
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $id = auth()->id();
         $cat = $request->input('categoria_id');
 
@@ -93,7 +93,7 @@ class ProveedorController extends Controller
 
         $this->validate($request, $campos, $mensaje);
 
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $id = auth()->id();
 
         $datosproveedor = [

@@ -47,8 +47,8 @@ class UsuarioController extends Controller
 
         // $datosUsuario = request()->except('_token');
         
-        $apellido = $request->input('apellido');
-        $nombre = $request->input('nombre');
+        $apellido = ucwords(strtolower($request->input('apellido')));
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $usuario = $request->input('username');
         $hashedPass = Hash::make($request->input('password'));
 
@@ -103,8 +103,8 @@ class UsuarioController extends Controller
         $this->validate($request, $campos, $mensaje);
 
 
-        $apellido = $request->input('apellido');
-        $nombre = $request->input('nombre');
+        $apellido = ucwords(strtolower($request->input('apellido')));
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $usuario = $request->input('username');        
         $pass = $request->input('password');
         $hashedPass = Hash::Make($pass);

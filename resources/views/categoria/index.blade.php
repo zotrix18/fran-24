@@ -45,11 +45,11 @@
                     <td>   
                                
                     
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-modif">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-modif-{{$categoria->id_categoria}}">
                         Editar Nombre
                     </button>
 
-                    @include('categoria.edit',['modo'=>'Edicion Categoria', $categoria])
+                    @include('categoria.edit',['modo'=>'Edicion Categoria', 'categoria' => $categoria])
 
                     <form action="{{ url('/categoria/baja/' . $categoria->id_categoria) }}" class="d-inline" method="POST">
                         @csrf

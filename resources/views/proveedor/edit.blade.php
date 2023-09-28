@@ -1,8 +1,8 @@
-<div class="modal fade" id="modal-modif" tabindex="-1" aria-labelledby="moda-modif" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal-modif-{{ $proveedor->id_proveedor }}" tabindex="-1" aria-labelledby="modal-modif-{{ $proveedor->id_proveedor }}" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-center" id="moda-modif">{{$modo}}</h4>
+                    <h4 class="modal-title text-center" id="modal-modif-{{ $proveedor->id_proveedor }}">{{$modo}}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

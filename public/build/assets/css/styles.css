@@ -5,6 +5,7 @@
  background-color: rgb(211, 211, 211);
 }
 
+
 .gradiente-login{
     background: linear-gradient(to bottom, #C70039 50%, #000000 100%);
     min-height: 100vh;
@@ -38,4 +39,25 @@
     color: #FFFF;
     margin-top: 50vh;
     font-size: 40px;
+}
+
+.colroja{
+    background: linear-gradient(to bottom, #C70039 50%, #000000 100%) !important;
+    min-height: 100vh;
+    max-width: 96%;
+}
+
+.reloj, .fecha{
+    min-height: 10vh;
+}
+
+.fecha{
+    background-color: #557dff;
+    
+}
+
+.reloj{
+    background-color: rgb(211, 211, 211);
+    font-size: 50px;
+    
 }

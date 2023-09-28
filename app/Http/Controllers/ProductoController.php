@@ -52,7 +52,7 @@ class ProductoController extends Controller
 
         // $datosUsuario = request()->except('_token');
         
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $stock = $request->input('stock');
         $precio = $request->input('precio');
         $prov = $request->input('proveedor_id');
@@ -94,8 +94,9 @@ class ProductoController extends Controller
         $producto = Producto::where('id_producto', $id_producto)->first();
         $id = $producto->id_proveedor;
         $proveedor = Proveedores::findOrFail($id);
+        $proveedores = Proveedores::select('id_proveedor', 'nombre')->get();
         
-        return view('producto.edit', compact('producto', 'proveedor'));
+        return view('producto.edit', compact('producto', 'proveedor', 'proveedores'));
     }
 
     /**
@@ -115,7 +116,7 @@ class ProductoController extends Controller
 
         $this->validate($request, $campos, $mensaje);
        
-        $nombre = $request->input('nombre');
+        $nombre = ucwords(strtolower($request->input('nombre')));
         $stock = $request->input('stock');
         $precio = $request->input('precio'); 
         $prov = $request->input('proveedor_id');

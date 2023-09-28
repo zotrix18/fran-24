@@ -40,6 +40,7 @@
                     <td>{{ $proveedor -> nombre}}</td>
 
                     @foreach ($categorias as $categoria)
+                    
                         @if($proveedor -> id_categoria == $categoria -> id_categoria)
                             <td> {{ $categoria -> nombre}} </td>
                         @endif
@@ -55,11 +56,11 @@
                     <td>   
                                
                     
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-modif">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-modif-{{ $proveedor->id_proveedor }}">
                         Editar Nombre
                     </button>
 
-                    @include('proveedor.edit',['modo'=>'Edicion proveedor', $proveedor])
+                    @include('proveedor.edit',['modo'=>'Edicion proveedor'])
 
                     <form action="{{ url('/proveedor/baja/' . $proveedor->id_categoria) }}" class="d-inline" method="POST">
                         @csrf
