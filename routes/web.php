@@ -38,8 +38,8 @@ Route::group(['middleware' => ['auth', 'checkPermission:dashAdmin']], function (
 });
 
 Route::group(['middleware' => ['auth', 'checkPermission:vendedor']], function () {
-    Route::get('/ventas', [VentasController::class, 'index']);
-
+    Route::resource('ventas', VentasController::class);
+    Route::get('/ajaxProd', [VentasController::class, 'productosAjax']);
 
 });
 

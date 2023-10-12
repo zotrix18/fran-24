@@ -51,13 +51,34 @@
     min-height: 10vh;
 }
 
+.espaciador{
+    max-height: 90px;
+    min-width: 200px;
+}
+
 .fecha{
     background-color: #557dff;
-    
 }
 
 .reloj{
     background-color: rgb(211, 211, 211);
     font-size: 50px;
     
+}
+
+.dia-semana{
+    display: flex;
+
+}
+
+.me-fran{
+    margin-right: 10vw;
+}
+
+#metodo-pago{
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.searchBox{
+    max-width: 300px;
 }

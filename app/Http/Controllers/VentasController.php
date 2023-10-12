@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\View;
 use App\Models\rv;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class VentasController extends Controller
@@ -14,7 +15,16 @@ class VentasController extends Controller
     public function index()
     {
         $horaActual = now();
-        return view('venta.index')->with('horaActual', $horaActual);
+        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+         
+        $fecha [0] = $dias[date('w')];
+        $fecha [1] = date('d')." de ".$meses[date('n')-1];
+
+        $productos = Producto::select('id_producto','nombre', 'stock', 'precio', 'alerta', 'id_proveedor')->get();
+        $productosJson = json_encode($productos);
+        
+        return view('venta.index', compact('horaActual', 'fecha', 'productosJson'));
     
     }
 
@@ -65,4 +75,11 @@ class VentasController extends Controller
     {
         //
     }
+
+    public function productosAjax()
+    {
+    $productos = Producto::select('id_producto','nombre', 'stock', 'precio', 'alerta', 'id_proveedor')->get();
+    return response()->json(['productosJson' => $productos]);
+    }
+
 }
