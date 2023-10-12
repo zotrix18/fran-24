@@ -39,6 +39,7 @@
     <div class="conteiner-fluid">
         <div class="row">
             <div class="col-9 ">
+
                 <div class="conteiner">
                     <div class="row">
                         <div class="col-6">
@@ -94,16 +95,43 @@
                         </div>
                     </div>
                 </div>
-
-
-                
+                                
                 <div class="searchBox text-center ">
                     <input type="text" id="search-input" class="form-control text-center px-5" placeholder="Buscar">
                     <ul id="results-list"></ul>
                 </div>
-                <p class="test">asdasd</p>
-                
 
+                <div class="conteiner tabla pe-3 px-4 ms-5">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col"></th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
 
 
 

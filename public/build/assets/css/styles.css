@@ -89,7 +89,30 @@
    padding: 10px;
 }
 
+#search-input{
+    background-color: transparent;
+}
+
+
 .test{
     position: absolute;
     z-index: 1;
+}
+
+.tabla{
+    left: 30vh;
+    max-width: 68.5vw;
+    background-color: aliceblue;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    margin: 30px;
+}
+
+.tabla-2{
+    caption-side:bottom;
+    border-collapse:collapse
+}
+
+.table{
+    background-color: transparent;
 }
