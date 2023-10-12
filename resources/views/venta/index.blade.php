@@ -97,14 +97,12 @@
 
 
                 
-                <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded ">
-                    <input type="text" id="search-input" placeholder="Buscar">
+                <div class="searchBox text-center ">
+                    <input type="text" id="search-input" class="form-control text-center px-5" placeholder="Buscar">
                     <ul id="results-list"></ul>
                 </div>
+                <p class="test">asdasd</p>
                 
-                <script>
-                    
-                </script>
 
 
 

@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 productos.forEach(producto => {
                     if (producto.nombre.toLowerCase().includes(searchTerm)) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = producto.nombre;
+                        const listItem = document.createElement('ul');
+                        listItem.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
 
                         listItem.addEventListener('click', function() {
                             const selectedId = producto.id_producto;
